@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# remove pypiserver start script
+update-rc.d -f pypiserver remove

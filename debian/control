@@ -1,0 +1,15 @@
+Source: python-pypiserver-daemon
+Section: python
+Priority: extra
+Maintainer: Pablo Torres <pablo.torres@deri.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/python-pypiserver-daemon.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/python-pypiserver-daemon.git;a=summary
+
+Package: python-pypiserver-daemon
+Architecture: all
+Depends: ${misc:Depends}
+Description: Provides a daemon for pypiserver
+ Provides a daemon for pypiserver and is very good

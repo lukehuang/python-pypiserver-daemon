@@ -1,0 +1,5 @@
+python-pypiserver-daemon (0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)
+
+ -- Pablo Torres <pablo.torres@deri.org>  Wed, 28 Aug 2013 13:12:15 +0100
