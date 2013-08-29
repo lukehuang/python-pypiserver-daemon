@@ -1,6 +1,6 @@
 #! /bin/bash
 ### BEGIN INIT INFO
-# Provides:          skeleton
+# Provides:          pypi-server
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -13,20 +13,42 @@
 # Author: Pablo Torres <pablo.torres@deri.org>
 #
 
+
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Pypiserver-daemon"
 NAME=pypi-server
-DAEMON=$NAME
-DAEMON_ARGS="-p 8080 -P $HOME/.htaccess_pypi-server /opt/pypi_repository/"
+DAEMON=/usr/bin/$NAME
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/pypiserver
+CONF=/etc/default/$NAME
 
 # Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+if ! [ -x "$DAEMON" ]; then
+    echo "$DAEMON not found"
+    exit 0
+fi
+
+# Default configuration
+PORT=8080
+HTACCESS_FILE=/etc/$NAME/htaccess
+REPO_DIR=/var/$NAME
 
 # Read configuration variable file if it is present
-[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+if ! [ -r $CONF ]; then 
+    echo "Not config file found ($CONF), using default"
+else
+    . $CONF
+fi
+
+# Create repo directory
+if ! [ -d $REPO_DIR ]; then
+    echo "Creating directory $REPO_DIR"
+    mkdir -p $REPO_DIR
+fi
+
+DAEMON_ARGS="-p $PORT -P $HTACCESS_FILE $REPO_DIR"
+echo "$DAEMON $DAEMON_ARGS"
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
@@ -45,9 +67,9 @@ do_start()
 	#   0 if daemon has been started
 	#   1 if daemon was already running
 	#   2 if daemon could not be started
-	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
+	start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
 		|| return 1
-	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON -- \
+	start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- \
 		$DAEMON_ARGS \
 		|| return 2
 	# Add code here, if necessary, that waits for the process to be ready
