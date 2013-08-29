@@ -1,3 +1,2 @@
 pypiserver etc/init.d
-conf/htaccess etc/pypi-server
 conf/pypi-server etc/default
