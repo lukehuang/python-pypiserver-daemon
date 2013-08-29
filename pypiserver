@@ -31,7 +31,6 @@ fi
 
 # Default configuration
 PORT=8080
-HTACCESS_FILE=/etc/$NAME/htaccess
 REPO_DIR=/var/$NAME
 
 # Read configuration variable file if it is present
@@ -46,8 +45,12 @@ if ! [ -d $REPO_DIR ]; then
     echo "Creating directory $REPO_DIR"
     mkdir -p $REPO_DIR
 fi
+DAEMON_ARGS="-p $PORT $REPO_DIR"
 
-DAEMON_ARGS="-p $PORT -P $HTACCESS_FILE $REPO_DIR"
+# if HTACCESS_FILE is set, add to ARGS
+if ! [ -z "${HTACCESS_FILE+xxx}" ]; then 
+    DAEMON_ARGS="-p $PORT -P $HTACCESS_FILE $REPO_DIR"
+fi
 echo "$DAEMON $DAEMON_ARGS"
 
 # Load the VERBOSE setting and other rcS variables
