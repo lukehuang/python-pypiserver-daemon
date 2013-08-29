@@ -1,0 +1,3 @@
+/etc/default/pypi-server
+/etc/pypi-server/htaccess
+/etc/init.d/pypiserver
