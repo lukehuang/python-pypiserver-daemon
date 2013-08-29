@@ -10,6 +10,6 @@ Homepage: <insert the upstream URL, if relevant>
 
 Package: python-pypiserver-daemon
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, ${python:Depends}, python-pypiserver (>= 1.1.3-2)
 Description: Provides a daemon for pypiserver
- Provides a daemon for pypiserver and is very good
+ Provides a daemon for pypiserver and it is very good
