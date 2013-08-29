@@ -1,3 +1,13 @@
+python-pypiserver-daemon (0.1-2) unstable; urgency=low
+
+  * first version
+  * fixed some bugs
+  * update new install rules
+  * change conf/htpasswd to conf/htaccess
+  * add new dependecies in debian/control
+
+ -- Pablo Torres <pablo@galvarino>  Thu, 29 Aug 2013 12:42:54 +0100
+
 python-pypiserver-daemon (0.1-1) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)
