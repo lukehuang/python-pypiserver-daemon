@@ -1,5 +1,0 @@
-#!/bin/sh
-set -e
-
-# stop pypiserver server
-invoke-rc.d pypiserver stop

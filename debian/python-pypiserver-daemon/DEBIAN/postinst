@@ -1,8 +1,0 @@
-#!/bin/sh
-set -e
-
-# register pypiserver
-update-rc.d pypiserver defaults 90 > /dev/null
-
-# start pypiserver
-invoke-rc.d pypiserver start
