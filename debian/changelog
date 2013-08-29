@@ -1,3 +1,13 @@
+python-pypiserver-daemon (0.1-3) unstable; urgency=low
+
+  * fix empty htaccess_file
+  * remove conf folder from master branch
+  * add conf folder to upstream
+  * delete duplicate debian folder in upstream
+  * remove default install of htaccess_file
+
+ -- Pablo Torres <pablo.torres@deri.org>  Thu, 29 Aug 2013 13:58:48 +0100
+
 python-pypiserver-daemon (0.1-2) unstable; urgency=low
 
   * first version
